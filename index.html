@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>The Psychic Game</title>
+</head>
+
+<body>
+	<h1>The Psychic Game</h1>
+    <div>Guess what letter I'm thinking of...</div>
+    <br>
+    <div id="wins">Wins:</div>
+    <br>
+    <div id="losses">Losses:</div>
+    <br>
+    <div id="left-guess">Guesses Left:</div>
+    <br>
+    <div id="guess">Your Guesses so far:</div>
+</body>
+<script type="text/javascript">
+	var computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","r","s","t","u","v","y","w","z","q","x"];
+
+	var userGuessList = [];
+
+	var computerScore = 0;
+	var userScore = 0;
+	var guesses_left = 10;
+
+	document.onkeyup = function(event) {
+		var userGuess = event.key;
+		var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+		console.log(computerGuess);
+
+		userGuessList.push(userGuess);
+		console.log(userGuessList);
+		document.getElementById("guess").innerHTML = "Your Guesses so far: " + userGuessList;
+
+
+		if (userGuess == computerGuess){
+			userScore++;
+			console.log(userScore)
+			document.getElementById("wins").innerHTML = "Wins: " + userScore;
+			if (userScore == 3) {
+
+				console.log("user won!!");
+			};
+		} else {
+			computerScore++;
+			console.log("computer " + computerScore);
+			document.getElementById("losses").innerHTML = "Losses: " + computerScore++;
+		};
+
+
+		for ( var i in userGuessList) {
+
+			var guess_over = guesses_left - userGuessList.length;
+			console.log('Guess left' + guesses_left);
+			document.getElementById("left-guess").innerHTML = 'Guesses Left: ' + guess_over;
+			if (guess_over == 0 ){
+				alert("Game over")
+			}
+		};
+
+	};
+
+
+</script>
+</html>
